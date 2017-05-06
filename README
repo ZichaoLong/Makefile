@@ -24,7 +24,7 @@
             ...
     ...
     src5.cpp
-    where the "Makefile"s mentioned above were copies of "src/Makefile". Each "Makefile" will automatically find your "cpp" files-the post fix can be modified in "./Makefile"-in its current directory, and execute "make" in every subdirectory. Recursively, source files in subdirectory will be compiled. Note that source files can also be placed in current directory and you can simply remove folders: "src*".
+where the "Makefile"s mentioned above were copies of "src/Makefile". Each "Makefile" will automatically find your "cpp" files-the post fix can be modified in "./Makefile"-in its current directory, and execute "make" in every subdirectory. Recursively, source files in subdirectory will be compiled. Note that source files can also be placed in current directory and you can simply remove folders: "src*".
     "*.o" will be placed in the folder "obj/", and can be linked to an excutable file in "./bin/" if "obj/Makefile" was invoked.
     You can customize you compile process by modify "./Makefile", e.g.:
         CC=g++
@@ -32,7 +32,7 @@
         ROOT_DIR=$(shell pwd)
         OPTIONS=-O2 -std=c++11 -I$(ROOT_DIR)/include ...
         BIN=a.out
-    these variables will be export to every Makefile in "src/" and "obj/"
+these variables will be export to every Makefile in "src/" and "obj/"
     Some useful target:
         all:OBJ LINK run
         OBJ:$(SUBDIRS) $(CUR_OBJS)
