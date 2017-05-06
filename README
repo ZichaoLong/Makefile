@@ -24,7 +24,7 @@
             ...
     ...
     src5.cpp
-    where the "Makefile"s mentioned above were copies of "src/Makefile". Each "Makefile" will automatically find your "cpp" files-the post fix can be modified in "./Makefile"-in its current directory, and execute "make" in every subdirectory. Recursively, source files in subdirectory will be compiled. Note that souce files can also be placed in current directory and you can simply remove folders: "src*".
+    where the "Makefile"s mentioned above were copies of "src/Makefile". Each "Makefile" will automatically find your "cpp" files-the post fix can be modified in "./Makefile"-in its current directory, and execute "make" in every subdirectory. Recursively, source files in subdirectory will be compiled. Note that source files can also be placed in current directory and you can simply remove folders: "src*".
     "*.o" will be placed in the folder "obj/", and can be linked to an excutable file in "./bin/" if "obj/Makefile" was invoked.
     You can customize you compile process by modify "./Makefile", e.g.:
         CC=g++
