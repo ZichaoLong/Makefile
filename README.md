@@ -1,4 +1,4 @@
-    We provide 3 "Makefile" files for you to compile your project in multiple folders in multi-level directories, one in current folder and the other two are placed in "obj/" and "src/", and we note them as "./Makefile", "src/Makefile", "obj/Makefile".
+    3 "Makefile" files are provided to compile your project in multiple folders in multi-level directories. One in current folder and the other two are placed in "obj/" and "src/". We note them as "./Makefile", "src/Makefile", "obj/Makefile" below.
     Your source file directory can be set as below if needed:
     src/
         Makefile
