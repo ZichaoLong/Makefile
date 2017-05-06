@@ -1,16 +1,15 @@
 CC=g++
 SOURCE_POSTFIX=cpp
 ROOT_DIR=$(shell pwd)
-HOME_DIR=/home/zlong
-OPTIONS=-O2 -std=c++11 -I$(ROOT_DIR)/include -L $(HOME_DIR)/usr/lib -L $(HOME_DIR)/usr/local/lib -I $(HOME_DIR)/usr/include -I $(HOME_DIR)/usr/local/include
+OPTIONS=-O2 -std=c++11 -I$(ROOT_DIR)/include -L $(HOME)/usr/lib -L $(HOME)/usr/local/lib -I $(HOME)/usr/include -I $(HOME)/usr/local/include
 BIN=zlong
 OBJS_DIR=$(ROOT_DIR)/obj
 BIN_DIR=$(ROOT_DIR)/bin
-export CC SOURCE_POSTFIX OPTIONS ROOT_DIR BIN OBJS_DIR BIN_DIR HOME_DIR
+export CC SOURCE_POSTFIX OPTIONS ROOT_DIR BIN OBJS_DIR BIN_DIR 
 
-SUBDIRS=$(wildcard src*)#源文件目录
+SUBDIRS=$(wildcard src*) # source files
 CUR_SOURCE=$(wildcard *.$(SOURCE_POSTFIX))
-CUR_OBJS=$(patsubst %.$(SOURCE_POSTFIX),$(OBJS_DIR)/%.o,$(CUR_SOURCE))#已包含目录全名
+CUR_OBJS=$(patsubst %.$(SOURCE_POSTFIX),$(OBJS_DIR)/%.o,$(CUR_SOURCE)) # current objs
 
 .PHONY:all OBJ LINK run 
 all:OBJ LINK run
