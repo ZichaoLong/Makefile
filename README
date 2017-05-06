@@ -1,0 +1,44 @@
+    We provide 3 "Makefile" files for you to compile your project in multiple folders in multi-level directories, one in current folder and the other two are placed in "obj/" and "src/", and we note them as "./Makefile", "src/Makefile", "obj/Makefile".
+    Your source file directory can be set as below if needed:
+    src/
+        Makefile
+        a/
+            Makefile
+            src1.cpp
+            src2.cpp
+            b/
+                Makefile
+                src3.cpp
+            c/
+                Makefile
+                src4.cpp
+        b/
+            Makefile
+            d/
+                ...
+            f/
+                ...
+            ...
+    src-subroutine/
+            Makefile
+            ...
+    ...
+    src5.cpp
+where the "Makefile"s mentioned above were copies of "src/Makefile". Each "Makefile" will automatically find your "cpp" files-the post fix can be modified in "./Makefile"-in its current directory, and execute "make" in every subdirectory. Recursively, source files in subdirectory will be compiled. Note that souce files can also be placed in current directory and you can simply remove folders: "src*".
+    "*.o" will be placed in the folder "obj/", and can be linked to an excutable file in "./bin/" if "obj/Makefile" was invoked.
+    You can customize you compile process by modify "./Makefile", e.g.:
+        CC=g++
+        SOURCE_POSTFIX=cpp
+        ROOT_DIR=$(shell pwd)
+        OPTIONS=-O2 -std=c++11 -I$(ROOT_DIR)/include ...
+        BIN=a.out
+    these variables will be export to every Makefile in "src/" and "obj/"
+    Some useful target:
+        all:OBJ LINK run
+        OBJ:$(SUBDIRS) $(CUR_OBJS)
+        LINK:OBJ
+            make -C obj
+        run:LINK
+            bin/$(BIN)
+        clean:
+            -rm -rf $(OBJS_DIR)/*.o; -rm -rf bin/$(BIN)
