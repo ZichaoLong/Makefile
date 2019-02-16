@@ -1,11 +1,12 @@
 CC=g++
 SOURCE_POSTFIX=cpp
 ROOT_DIR=$(shell pwd)
-OPTIONS=-O2 -std=c++11 -I$(ROOT_DIR)/include -L $(HOME)/usr/lib -L $(HOME)/usr/local/lib -I $(HOME)/usr/include -I $(HOME)/usr/local/include
+CXXFLAGS=-O3 -std=c++11 -fPIC -I$(ROOT_DIR)/include -I $(HOME)/usr/include
+LDFLAGS=-std=c++11 -Wl,--no-as-needed -Wl,-rpath $(HOME)/usr/lib -L $(HOME)/usr/lib
 BIN=zlong
 OBJS_DIR=$(ROOT_DIR)/obj
 BIN_DIR=$(ROOT_DIR)/bin
-export CC SOURCE_POSTFIX OPTIONS ROOT_DIR BIN OBJS_DIR BIN_DIR 
+export CC SOURCE_POSTFIX CXXFLAGS LDFLAGS ROOT_DIR BIN OBJS_DIR BIN_DIR 
 
 SUBDIRS=$(wildcard src*) # source files
 CUR_SOURCE=$(wildcard *.$(SOURCE_POSTFIX))
@@ -16,13 +17,13 @@ all:OBJ LINK run
 OBJ:$(SUBDIRS) $(CUR_OBJS)
 
 $(SUBDIRS):ECHO
-	make -C $@
+	+make -C $@
 ECHO:
 	@echo $(SUBDIRS)
 $(CUR_OBJS):$(OBJS_DIR)/%.o:%.$(SOURCE_POSTFIX)
-	$(CC) -c $(OPTIONS) $< -o $@
+	$(CC) -c $(CXXFLAGS) $< -o $@
 LINK:OBJ
-	make -C obj 
+	+make -C obj 
 run:LINK
 	$(BIN_DIR)/$(BIN)
 
@@ -31,6 +32,6 @@ edit:
 	vim -p *.cpp ./include/*.h
 clean:cleanobj cleanbin
 cleanobj:
-	-rm -rf $(OBJS_DIR)/*.o
+	-rm -rf $(OBJS_DIR)/*.o 
 cleanbin:
 	-rm -rf $(BIN_DIR)/$(BIN)

@@ -4,8 +4,8 @@ CUR_OBJS=$(patsubst %.$(SOURCE_POSTFIX),$(OBJS_DIR)/%.o,$(CUR_SOURCE))
 
 all:$(SUBDIRS) $(CUR_OBJS)
 $(SUBDIRS):ECHO
-	make -C $@
+	+make -C $@
 $(CUR_OBJS):$(OBJS_DIR)/%.o:%.$(SOURCE_POSTFIX)
-	$(CC) -c $(OPTIONS) $< -o $@
+	$(CC) -c $(CXXFLAGS) $< -o $@
 ECHO:
 	@echo $(SUBDIRS)

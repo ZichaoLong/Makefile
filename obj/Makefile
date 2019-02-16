@@ -1,2 +1,2 @@
 $(BIN_DIR)/$(BIN):*.o
-	$(CC) -o $@ $^ $(OPTIONS)
+	$(CC) -o $@ $^ $(LDFLAGS)
